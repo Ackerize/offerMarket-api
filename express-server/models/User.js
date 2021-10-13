@@ -14,6 +14,7 @@ const userSchema = new Schema(
     hasProfile: {
       type: Boolean,
       default: false,
+      required: false,
     },
   },
   {
