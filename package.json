@@ -1,0 +1,25 @@
+{
+  "name": "offermarket-api",
+  "version": "0.0.1",
+  "private": true,
+  "main": "functions/server.js",
+  "scripts": {
+    "build": "netlify-lambda build express",
+    "start": "nodemon server-local.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "mongoose": "^6.0.10",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "netlify-lambda": "^2.0.14",
+    "nodemon": "^2.0.13",
+    "serverless-http": "^2.7.0"
+  }
+}
