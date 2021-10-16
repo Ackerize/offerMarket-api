@@ -26,3 +26,23 @@ module.exports.create = async (req, res, next) => {
       );
   }
 };
+
+module.exports.getByUid = async (req, res, next) => {
+  const { uid } = req.params;
+  const user = await User.findOne({ uid });
+
+  if (user) {
+    return res.status(200).json({
+      error: false,
+      message: "Usuario encontrado",
+      user: {
+        hasProfile: user.hasProfile,
+      },
+    });
+  } else {
+    return res.status(404).json({
+      error: true,
+      message: "Usuario no encontrado",
+    });
+  }
+};
