@@ -39,9 +39,9 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 router.use(
   "/api/v1/docs",
   express.static('node_modules/swagger-ui-dist/', { index: false }),
-  swaggerUi.serve
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocs)
 );
-router.get("/api/v1/docs", swaggerUi.setup(swaggerDocs));
 router.use("/api/v1/users", usersRouter);
 router.use("/api/v1/products", productsRouter);
 router.use("/api/v1/reviews", reviewsRouter);
