@@ -1,14 +1,19 @@
 const Profile = require("../models/profile");
+const User = require("../models/user");
 
 module.exports.create = (req, res, next) => {
   const profile = new Profile({ ...req.body });
   profile
     .save()
     .then(() => {
-      res.status(201).json({
-        message: "Perfil creado con éxito",
-        error: false,
-      });
+      User.findOneAndUpdate({ uid: req.body.user }, { hasProfile: true }).then(
+        () => {
+          res.status(201).json({
+            message: "Perfil creado con éxito",
+            error: false,
+          });
+        }
+      );
     })
     .catch((err) => {
       res.status(500).json({
@@ -44,4 +49,3 @@ module.exports.getOne = (req, res, next) => {
       });
     });
 };
-
