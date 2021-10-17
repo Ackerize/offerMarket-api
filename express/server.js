@@ -38,7 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
-app.use("/", principalRouter);
+app.use("/.netlify/functions/server", principalRouter);
 
 
 // catch 404 and forward to error handler
