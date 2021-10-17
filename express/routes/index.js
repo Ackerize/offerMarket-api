@@ -11,7 +11,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 
 const swaggerOptions = {
   swaggerDefinition: {
-    openapi: "3.0.0",
+    openapi: "3.0.3",
     info: {
       title: "Offer Market API",
       version: "1.0.0",
@@ -31,7 +31,7 @@ const swaggerOptions = {
       },
     ],
   },
-  apis: ["./*.js"],
+  apis: ["./express/routes/*.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
