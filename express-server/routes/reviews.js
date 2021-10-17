@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 const reviewController = require('../controllers/reviewController');
 
-/* GET users listing. */
+/* GET reviews listing. */
 router.get('/:sellerUid', reviewController.getBySeller);
 
-/* POST users listing. */
+/* POST reviews listing. */
 router.post('/', reviewController.create);
 
 module.exports = router;
