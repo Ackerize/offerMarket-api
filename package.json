@@ -21,6 +21,7 @@
     "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^9.0.1",
     "netlify-lambda": "^2.0.14",
     "nodemon": "^2.0.13",
     "serverless-http": "^2.7.0"
