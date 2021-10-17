@@ -13,11 +13,12 @@ const userController = require('../controllers/userController');
  *      tags: 
  *          - Usuarios
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: uid
  *            schema:
  *              type: string
- *              description: uid del usuario
+ *            description: uid del usuario
+ *            required: true
  *      responses:
  *          '200':
  *              description: Usuario obtenido con éxito

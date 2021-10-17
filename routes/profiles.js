@@ -13,11 +13,12 @@ const profileController = require('../controllers/profileController');
  *      tags: 
  *          - Perfiles
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: uid
  *            schema:
  *              type: string
- *              description: uid del usuario
+ *            description: uid del usuario
+ *            required: true
  *      responses:
  *          '200':
  *              description: Perfil obtenido correctamente

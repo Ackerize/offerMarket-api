@@ -13,11 +13,12 @@ const favoriteController = require('../controllers/favoriteController');
  *      tags: 
  *          - Favoritos
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: userId
  *            schema:
  *              type: string
- *              description: uid del vendedor
+ *            description: uid del vendedor
+ *            required: true
  *      responses:
  *          '200':
  *              description: Favoritos obtenidos correctamente
@@ -188,11 +189,12 @@ router.post('/', favoriteController.create);
  *      tags: 
  *          - Favoritos
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: productId
  *            schema:
  *              type: string
- *              description: id del producto
+ *            description: id del producto
+ *            required: true
  *      responses:
  *          '200':
  *              description: Favorito eliminado correctamente

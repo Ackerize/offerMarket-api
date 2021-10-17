@@ -131,11 +131,12 @@ router.get('/', productController.getAll);
  *      tags: 
  *          - Productos
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: id
  *            schema:
  *              type: string
- *              description: id del producto
+ *            description: id del producto
+ *            required: true
  *      responses:
  *          '200':
  *              description: Producto obtenido exitosamente
@@ -245,11 +246,12 @@ router.get('/:id', productController.getById);
  *      tags: 
  *          - Productos
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: productName
  *            schema:
  *              type: string
- *              description: palabra a buscar
+ *            description: palabra a buscar
+ *            required: true
  *          - in: query
  *            name: sort
  *            schema:

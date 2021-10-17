@@ -13,11 +13,12 @@ const reviewController = require('../controllers/reviewController');
  *      tags: 
  *          - Reseñas
  *      parameters:
- *          - in: params
+ *          - in: path
  *            name: sellerUid
  *            schema:
  *              type: string
- *              description: uid del vendedor
+ *            description: uid del vendedor
+ *            required: true
  *      responses:
  *          '200':
  *              description: Reseñas obtenidas con éxito
