@@ -1,10 +1,8 @@
-"use strict";
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-const serverless = require("serverless-http");
 const mongoDB = require("./config/database");
 
 const principalRouter = require("./routes/index");
@@ -38,7 +36,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
-app.use("/.netlify/functions/server", principalRouter);
+app.use("/", principalRouter);
 
 
 // catch 404 and forward to error handler
@@ -58,4 +56,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-module.exports.handler = serverless(app);
