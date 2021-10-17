@@ -22,12 +22,16 @@ const swaggerOptions = {
     },
     servers: [
       {
+        url: "https://offer-market.netlify.app/api/v1",
+        description: "Production server",
+      },
+      {
         url: "http://localhost:3001/api/v1",
         description: "Development server",
       },
     ],
   },
-  apis: ["./express-server/routes/*.js"],
+  apis: ["./express/routes/*.js"],
 };
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
