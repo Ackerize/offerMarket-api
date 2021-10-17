@@ -1,4 +1,5 @@
 const Review = require("../models/review");
+const Profile = require("../models/profile");
 
 module.exports.create = (req, res, next) => {
   const { sellerUid } = req.params;
@@ -8,7 +9,15 @@ module.exports.create = (req, res, next) => {
   });
   review
     .save()
-    .then((result) => {
+    .then(async (result) => {
+      const profile = await Profile.findOne({ user: result.seller });
+      await Profile.updateOne(
+        { user: result.seller },
+        {
+          rating: (profile.rating + result.rating) / (profile.totalReviews + 1),
+          totalReviews: profile.totalReviews + 1,
+        }
+      );
       res.status(201).json({
         message: "Reseña guardada con éxito",
         error: false,
@@ -26,11 +35,22 @@ module.exports.create = (req, res, next) => {
 module.exports.getBySeller = (req, res, next) => {
   const { sellerUid } = req.params;
   Review.find({ seller: sellerUid })
-    .then((reviews) => {
+    .then(async (reviews) => {
+      const reviewsWithProfile = await Promise.all(
+        reviews.map(async (review) => {
+          const { name: author } = await Profile.findOne({
+            user: review.author,
+          });
+          const { name: seller } = await Profile.findOne({
+            user: review.seller,
+          });
+          return { ...review._doc, author, seller };
+        })
+      );
       res.status(200).json({
         error: false,
         message: "Reseñas obtenidas con éxito",
-        reviews,
+        reviews: reviewsWithProfile,
       });
     })
     .catch((err) => {

@@ -43,7 +43,17 @@ module.exports.getByString = (req, res, next) => {
   const {
     params: { productName },
   } = req;
+
+  const perPage = Number(req.query.size) || 10;
+  const page = req.query.page > 0 ? req.query.page : 0;
+
+  const sortProperty = req.query.sortby || "createdAt";
+  const sort = req.query.sort || "desc";
+
   Product.find({ name: { $regex: productName, $options: "i" } })
+    .limit(perPage)
+    .skip(perPage * page)
+    .sort({ [sortProperty]: sort })
     .then((products) => res.status(200).json({ error: false, products }))
     .catch((err) =>
       res.status(500).json({
@@ -58,10 +68,10 @@ module.exports.create = (req, res, next) => {
   const product = new Product({ ...req.body });
   product
     .save()
-    .then((product) =>
+    .then(() =>
       res
         .status(201)
-        .json({ error: false, message: "Producto creado con éxito", product })
+        .json({ error: false, message: "Producto creado con éxito" })
     )
     .catch((err) =>
       res.status(500).json({

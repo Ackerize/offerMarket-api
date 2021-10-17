@@ -6,6 +6,7 @@ module.exports.create = async (req, res, next) => {
 
   if (isEmail) {
     return res.status(400).json({
+      error: true,
       message: "Usuario ya existe con ese correo electrónico",
     });
   } else {

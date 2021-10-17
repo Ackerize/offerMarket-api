@@ -25,7 +25,10 @@ const profileSchema = Schema(
     },
     rating: {
       type: Number,
-      required: true,
+      default: 0,
+    },
+    totalReviews: {
+      type: Number,
       default: 0,
     },
     location: {
