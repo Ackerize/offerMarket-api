@@ -31,13 +31,10 @@ const profileSchema = Schema(
     location: {
       latitude: {
         type: Number,
-        required: true,
       },
       longitude: {
         type: Number,
-        required: true,
       },
-      required: true,
     },
   },
   {
