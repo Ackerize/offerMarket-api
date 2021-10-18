@@ -5,9 +5,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const serverless = require("serverless-http");
-const mongoDB = require("./config/database");
+const mongoDB = require("../config/database");
 
-const principalRouter = require("./routes/index");
+const principalRouter = require("../routes/index");
 require("dotenv").config();
 
 
