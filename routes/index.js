@@ -38,7 +38,6 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 
 router.use(
   "/api/v1/docs",
-  express.static('node_modules/swagger-ui-dist/', { index: false }),
   swaggerUi.serve,
   swaggerUi.setup(swaggerDocs)
 );
