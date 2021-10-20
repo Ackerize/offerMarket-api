@@ -12,4 +12,4 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 
-exports.default = app.database();
+exports.default = app.database(); // database() is a method of firebase.database()
