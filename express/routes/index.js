@@ -5,6 +5,7 @@ const productsRouter = require("./products");
 const reviewsRouter = require("./reviews");
 const profilesRouter = require("./profiles");
 const favoritesRouter = require("./favorites");
+const notificationsRouter = require("./notifications");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
@@ -46,5 +47,6 @@ router.use("/api/v1/products", productsRouter);
 router.use("/api/v1/reviews", reviewsRouter);
 router.use("/api/v1/profiles", profilesRouter);
 router.use("/api/v1/favorites", favoritesRouter);
+router.use("/api/v1/notifications", notificationsRouter);
 
 module.exports = router;
