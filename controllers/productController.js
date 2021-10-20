@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Profile = require("../models/profile");
+const notificationController = require("../controllers/notificationController");
 
 module.exports.getAll = (req, res, next) => {
   const perPage = Number(req.query.size) || 10;
@@ -104,15 +105,15 @@ module.exports.getByUser = (req, res, next) => {
 
 module.exports.create = async (req, res, next) => {
   const user = await Profile.findOne({ user: req.body.seller });
-  console.log(user);
   const product = new Product({ ...req.body, location: { ...user.location } });
   product
     .save()
-    .then(() =>
+    .then((product) => {
+      notificationController.sendNotification(product.seller, product._id);
       res
         .status(201)
-        .json({ error: false, message: "Producto creado con éxito" })
-    )
+        .json({ error: false, message: "Producto creado con éxito" });
+    })
     .catch((err) =>
       res.status(500).json({
         error: true,
