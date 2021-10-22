@@ -6,6 +6,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const serverless = require("serverless-http");
 const mongoDB = require("./config/database");
+var encoding = require("encoding");
 
 const principalRouter = require("./routes/index");
 require("dotenv").config();
