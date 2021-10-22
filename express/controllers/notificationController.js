@@ -1,13 +1,13 @@
 const Notification = require("../models/notification");
 const Profile = require("../models/profile");
-const firebase = require("../firebase/firebase-config").default;
+const firebase = require("../firebase/firebase-config");
 
 module.exports.sendNotification = async (uidSeller, idProduct) => {
   const profile = await Profile.findOne({ user: uidSeller });
   const notifications = await Notification.find({ seller: uidSeller });
   notifications.forEach((notification) => {
     const { user } = notification;
-    firebase.ref(`/notifications/${user}`).push({
+    firebase.database().ref(`/notifications/${user}`).push({
       date: Date.now(),
       product: idProduct,
       seller: {

@@ -1,15 +1,9 @@
-const firebase = require('firebase/compat/app');
-const database = require("firebase/compat/database")
+const admin = require("firebase-admin");
+const serviceAccount = require("./serviceAccountKey.json");
 
-const firebaseConfig = {
-  apiKey: "AIzaSyC44c6oM3-D_Nbuy_0-8HklT-hWesgvJzs",
-  authDomain: "offermarket-d6c31.firebaseapp.com",
-  projectId: "offermarket-d6c31",
-  storageBucket: "offermarket-d6c31.appspot.com",
-  messagingSenderId: "1082374728024",
-  appId: "1:1082374728024:web:7a8f06329e50f765629d2d",
-};
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://offermarket-d6c31-default-rtdb.firebaseio.com"
+});
 
-const app = firebase.initializeApp(firebaseConfig);
-
-exports.default = app.database(); // database() is a method of firebase.database()
+module.exports = admin // database() is a method of firebase.database()
