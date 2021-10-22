@@ -6,4 +6,4 @@ admin.initializeApp({
   databaseURL: "https://offermarket-d6c31-default-rtdb.firebaseio.com"
 });
 
-module.exports = admin // database() is a method of firebase.database()
+exports.default = admin // database() is a method of firebase.database()

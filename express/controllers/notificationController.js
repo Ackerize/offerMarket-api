@@ -1,6 +1,6 @@
 const Notification = require("../models/notification");
 const Profile = require("../models/profile");
-const firebase = require("../firebase/firebase-config");
+const firebase = require("../firebase/firebase-config").default;
 
 module.exports.sendNotification = async (uidSeller, idProduct) => {
   const profile = await Profile.findOne({ user: uidSeller });
