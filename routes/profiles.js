@@ -71,6 +71,10 @@ const profileController = require('../controllers/profileController');
  *                                              type: number
  *                                              description: longitud del usuario
  *                                              example: -70.66
+ *                                          name:
+ *                                              type: string
+ *                                              description: nombre de la ubicacion del usuario
+ *                                              example: Santa Tecla
  *          '404':
  *              description: Perfil no encontrado
  *              content:
@@ -158,6 +162,10 @@ router.get('/:uid', profileController.getOne);
  *                                      type: number
  *                                      description: longitud del usuario
  *                                      example: -70.66
+ *                                  name:
+ *                                      type: string
+ *                                      description: nombre de la ubicacion del usuario
+ *                                      example: Santa Tecla
  *      responses:
  *          '201':
  *              description: Perfil creado correctamente

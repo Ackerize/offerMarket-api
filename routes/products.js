@@ -333,6 +333,10 @@ router.get('/', productController.getAll);
  *                                                  type: number
  *                                                  description: longitud del producto
  *                                                  example: -58.381592
+ *                                              name:
+ *                                                  type: string
+ *                                                  description: nombre de la ubicación
+ *                                                  example: San Miguel
  *          '404':
  *              description: Producto no encontrado
  *              content:
@@ -473,6 +477,10 @@ router.get('/:id', productController.getById);
  *                                                  type: number
  *                                                  description: longitud del producto
  *                                                  example: -58.381592
+ *                                              name:
+ *                                                  type: string
+ *                                                  description: nombre de la ubicación
+ *                                                  example: San Miguel
  *          '500':
  *              description: Error en el servidor
  *              content:
@@ -559,6 +567,10 @@ router.get('/search/:productName', productController.getByString);
  *                                      type: number
  *                                      description: longitud del producto
  *                                      example: -58.381592
+ *                                  name:
+ *                                      type: string
+ *                                      description: nombre de la ubicación
+ *                                      example: San Miguel
  *      responses:
  *          '201':
  *              description: Producto creado correctamente
