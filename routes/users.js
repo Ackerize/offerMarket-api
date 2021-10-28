@@ -86,6 +86,36 @@ router.get('/:uid', userController.getByUid);
  *                              description: email del usuario
  *                              example: usuario@proveedor.com
  *      responses:
+ *          '200':
+ *              description: Usuario encontrado con éxito
+ *              content:
+ *                  application/json:
+ *                     schema:
+ *                        type: object
+ *                        properties:
+ *                           error:
+ *                              type: boolean
+ *                              description: Indica que no hubo error
+ *                              example: false
+ *                           message:
+ *                              type: string
+ *                              description: Mensaje indicando éxito
+ *                              example: Usuario creado con éxito
+ *                           user:
+ *                              type: object
+ *                              properties:
+ *                                  uid:
+ *                                      type: string
+ *                                      description: uid del usuario
+ *                                      example: CP9l8L1viLU77KrEOEDj2tNRCYq2
+ *                                  email:
+ *                                      type: string
+ *                                      description: email del usuario
+ *                                      example: usuario@proveedor.com
+ *                                  hasProfile:
+ *                                      type: boolean
+ *                                      description: Indica si el usuario tiene perfil
+ *                                      example: true
  *          '201':
  *              description: Usuario creado con éxito
  *              content:
@@ -101,6 +131,21 @@ router.get('/:uid', userController.getByUid);
  *                              type: string
  *                              description: Mensaje indicando éxito
  *                              example: Usuario creado con éxito
+ *                           user:
+ *                              type: object
+ *                              properties:
+ *                                  uid:
+ *                                      type: string
+ *                                      description: uid del usuario
+ *                                      example: CP9l8L1viLU77KrEOEDj2tNRCYq2
+ *                                  email:
+ *                                      type: string
+ *                                      description: email del usuario
+ *                                      example: usuario@proveedor.com
+ *                                  hasProfile:
+ *                                      type: boolean
+ *                                      description: Indica si el usuario tiene perfil
+ *                                      example: true
  *          '400':
  *              description: Usuario ya existe en la base de datos
  *              content:
