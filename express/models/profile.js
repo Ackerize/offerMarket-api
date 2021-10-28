@@ -38,6 +38,9 @@ const profileSchema = Schema(
       longitude: {
         type: Number,
       },
+      name: {
+        type: String,
+      },
     },
   },
   {

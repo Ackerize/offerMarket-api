@@ -43,6 +43,9 @@ const productSchema = new Schema(
       longitude: {
         type: Number,
       },
+      name: {
+        type: String,
+      },
     },
   },
   {
