@@ -1,22 +1,23 @@
 const User = require("../models/user");
 
 module.exports.create = async (req, res, next) => {
-  const { email, uid } = req.body;
-  const isEmail = await User.findOne({ email });
+  const { uid } = req.body;
+  const exist = await User.findOne({ uid });
 
-  if (isEmail) {
-    return res.status(400).json({
-      error: true,
-      message: "Usuario ya existe con ese correo electrónico",
+  if (exist) {
+    return res.status(200).json({
+      error: false,
+      message: "Usuario encontrado",
+      user: exist,
     });
   } else {
     const user = new User({ ...req.body });
     user
       .save()
-      .then(() =>
+      .then((newUser) =>
         res
           .status(201)
-          .json({ error: false, message: "Usuario creado con éxito" })
+          .json({ error: false, message: "Usuario creado con éxito", user: newUser })
       )
       .catch((err) =>
         res.status(500).json({
