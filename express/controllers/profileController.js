@@ -49,3 +49,29 @@ module.exports.getOne = (req, res, next) => {
       });
     });
 };
+
+module.exports.update = (req, res, next) => {
+  const { uid } = req.params;
+  Profile.findOneAndUpdate({ user: uid }, req.body)
+    .then((profile) => {
+      if (profile) {
+        res.status(200).json({
+          error: false,
+          message: "Perfil actualizado con éxito",
+          data: profile,
+        });
+      } else {
+        res.status(404).json({
+          error: true,
+          message: "No se encontró el perfil",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: true,
+        message: "Ocurrió un error inesperado",
+        errorMessage: err.message,
+      });
+    });
+};

@@ -195,4 +195,6 @@ router.get('/:uid', profileController.getOne);
  */
 router.post('/', profileController.create);
 
+router.put('/:uid', profileController.update);
+
 module.exports = router;
