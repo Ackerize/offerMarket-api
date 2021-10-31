@@ -54,3 +54,29 @@ module.exports.delete = (req, res, next) => {
       });
     });
 };
+
+module.exports.isFavorite = (req, res, next) => {
+  Favorite.findOne({ product: req.params.productId, user: req.params.userId })
+    .then((favorite) => {
+      if (!favorite) {
+        res.status(200).json({
+          message: "El producto no está en favoritos",
+          error: false,
+          isFavorite: false,
+        });
+      } else {
+        res.status(200).json({
+          message: "El producto está en favoritos",
+          error: false,
+          isFavorite: true,
+        });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Ocurrió un error inesperado",
+        error: true,
+        errorMessage: error.message,
+      });
+    });
+};

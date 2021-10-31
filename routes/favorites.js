@@ -115,6 +115,69 @@ const favoriteController = require('../controllers/favoriteController');
 
 router.get('/:userId', favoriteController.getByUser);
 
+/**
+ * @swagger
+ * /favorites/{userId}/{productId}:
+ *  get:
+ *      summary: Obtener los favoritos de un usuario
+ *      description: Obtiene los favoritos de un usuario
+ *      tags: 
+ *          - Favoritos
+ *      parameters:
+ *          - in: path
+ *            name: userId
+ *            schema:
+ *              type: string
+ *            description: uid del vendedor
+ *            required: true
+ *          - in: path
+ *            name: productId
+ *            schema:
+ *              type: string
+ *            description: id del producto
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Favorito encontrado
+ *              content:
+ *                  application/json:
+ *                     schema:
+ *                        type: object
+ *                        properties:
+ *                           error:
+ *                              type: boolean
+ *                              description: Indica que no hubo error
+ *                              example: false
+ *                           message:
+ *                              type: string
+ *                              description: Mensaje indicando éxito
+ *                              example: El producto está en favoritos
+ *                           isFavorite:
+ *                              type: boolean
+ *                              description: Indica si el producto es favorito
+ *                              example: true
+ *          '500':
+ *              description: Error en el servidor
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              error:
+ *                                  type: boolean
+ *                                  description: Indica que ocurrió un error
+ *                                  example: true
+ *                              message:
+ *                                  type: string
+ *                                  description: Mensaje indicando error
+ *                                  example: Ocurrió un error inesperado
+ *                              errorMessage:
+ *                                  type: string
+ *                                  description: Mensaje descriptivo sobre el error
+ *                                  example: Error en el servidor
+ */
+router.get('/:userId/:productId', favoriteController.isFavorite);
+
 /* POST favorites listing. */
 
 /**
