@@ -245,13 +245,19 @@ router.post('/', favoriteController.create);
 
 /**
  * @swagger
- * /favorites/{productId}:
+ * /favorites/{userId}/{productId}:
  *  delete:
  *      summary: Eliminar un favorito
  *      description: Elimina un favorito
  *      tags: 
  *          - Favoritos
  *      parameters:
+ *          - in: path
+ *            name: userId
+ *            schema:
+ *              type: string
+ *            description: id del usuario
+ *            required: true
  *          - in: path
  *            name: productId
  *            schema:
@@ -294,6 +300,6 @@ router.post('/', favoriteController.create);
  *                                  description: Mensaje descriptivo sobre el error
  *                                  example: Error en el servidor
  */
-router.delete('/:productId', favoriteController.delete);
+router.delete('/:userId/:productId', favoriteController.delete);
 
 module.exports = router;
