@@ -229,7 +229,7 @@ router.post('/', favoriteController.create);
  *                                  description: Mensaje descriptivo sobre el error
  *                                  example: Error en el servidor
  */
-router.delete('/:productId', favoriteController.delete);
+router.delete('/:userId/:productId', favoriteController.delete);
 
 router.get('/:userId/:productId', favoriteController.isFavorite);
 

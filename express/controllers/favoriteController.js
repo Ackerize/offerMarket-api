@@ -39,7 +39,7 @@ module.exports.getByUser = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  Favorite.findOneAndDelete({ product: req.params.productId })
+  Favorite.findOneAndDelete({ product: req.params.productId, user: req.params.userId })
     .then((favorite) => {
       res.status(200).json({
         message: "Producto eliminado de favoritos",
