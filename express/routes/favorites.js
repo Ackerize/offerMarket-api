@@ -231,4 +231,6 @@ router.post('/', favoriteController.create);
  */
 router.delete('/:productId', favoriteController.delete);
 
+router.get('/:userId/:productId', favoriteController.isFavorite);
+
 module.exports = router;
