@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Profile = require("../models/profile");
+const Favorite = require("../models/favorite");
 const Notification = require("../models/notification");
 const notificationController = require("../controllers/notificationController");
 
@@ -129,8 +130,9 @@ module.exports.delete = (req, res, next) => {
     params: { id },
   } = req;
   Product.findByIdAndDelete(id)
-    .then((product) => {
+    .then(async (product) => {
       if (product) {
+        await Favorite.deleteMany({ product: id });
         res.status(200).json({ error: false, message: "Producto eliminado" });
       } else {
         res
