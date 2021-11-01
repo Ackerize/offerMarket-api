@@ -609,4 +609,141 @@ router.get('/search/:productName', productController.getByString);
  */
 router.post('/', productController.create);
 
+/**
+ * @swagger
+ * /products/{id}:
+ *  delete:
+ *      summary: Eliminar un producto por id
+ *      description: Elimina un producto por id
+ *      tags: 
+ *          - Productos
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            description: id del producto
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Producto eliminado exitosamente
+ *              content:
+ *                  application/json:
+ *                     schema:
+ *                        type: object
+ *                        properties:
+ *                           error:
+ *                              type: boolean
+ *                              description: Indica que no hubo error
+ *                              example: false
+ *                           message:
+ *                              type: string
+ *                              description: Mensaje indicando éxito
+ *                              example: Producto eliminado con éxito
+ *          '404':
+ *              description: Producto no encontrado
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              error:
+ *                                  type: boolean
+ *                                  description: Indica que ocurrió un error
+ *                                  example: true
+ *                              message:
+ *                                  type: string
+ *                                  description: Mensaje indicando error
+ *                                  example: Producto no encontrado
+ *          '500':
+ *              description: Error en el servidor
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              error:
+ *                                  type: boolean
+ *                                  description: Indica que ocurrió un error
+ *                                  example: true
+ *                              message:
+ *                                  type: string
+ *                                  description: Mensaje indicando error
+ *                                  example: Ocurrió un error inesperado
+ *                              errorMessage:
+ *                                  type: string
+ *                                  description: Mensaje descriptivo sobre el error
+ *                                  example: Error en el servidor
+ */
+router.delete('/:id', productController.delete);
+
+
+/**
+ * @swagger
+ * /products/{id}:
+ *  put:
+ *      summary: Actualizar un producto por id
+ *      description: Actualiza un producto por id
+ *      tags: 
+ *          - Productos
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            schema:
+ *              type: string
+ *            description: id del producto
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Producto actualizado exitosamente
+ *              content:
+ *                  application/json:
+ *                     schema:
+ *                        type: object
+ *                        properties:
+ *                           error:
+ *                              type: boolean
+ *                              description: Indica que no hubo error
+ *                              example: false
+ *                           message:
+ *                              type: string
+ *                              description: Mensaje indicando éxito
+ *                              example: Producto actualizado con éxito
+ *          '404':
+ *              description: Producto no encontrado
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              error:
+ *                                  type: boolean
+ *                                  description: Indica que ocurrió un error
+ *                                  example: true
+ *                              message:
+ *                                  type: string
+ *                                  description: Mensaje indicando error
+ *                                  example: Producto no encontrado
+ *          '500':
+ *              description: Error en el servidor
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              error:
+ *                                  type: boolean
+ *                                  description: Indica que ocurrió un error
+ *                                  example: true
+ *                              message:
+ *                                  type: string
+ *                                  description: Mensaje indicando error
+ *                                  example: Ocurrió un error inesperado
+ *                              errorMessage:
+ *                                  type: string
+ *                                  description: Mensaje descriptivo sobre el error
+ *                                  example: Error en el servidor
+ */
+router.put('/:id', productController.update);
+
 module.exports = router;
