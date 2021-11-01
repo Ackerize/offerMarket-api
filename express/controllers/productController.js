@@ -109,8 +109,8 @@ module.exports.create = async (req, res, next) => {
   const product = new Product({ ...req.body, location: { ...user.location } });
   product
     .save()
-    .then((product) => {
-      notificationController.sendNotification(product.seller, product._id);
+    .then(async (product) => {
+      await notificationController.sendNotification(product.seller, product._id);
       res
         .status(201)
         .json({ error: false, message: "Producto creado con éxito" });
