@@ -94,7 +94,16 @@ module.exports.getByUser = (req, res, next) => {
   const {
     params: { uid },
   } = req;
+
+  const perPage = Number(req.query.size) || 10;
+  const page = req.query.page > 0 ? req.query.page : 0;
+
+  const sortProperty = req.query.sortby || "createdAt";
+  const sort = req.query.sort || "desc";
   Product.find({ seller: uid })
+    .limit(perPage)
+    .skip(perPage * page)
+    .sort({ [sortProperty]: sort })
     .then((products) => res.status(200).json({ error: false, products }))
     .catch((err) =>
       res.status(500).json({
@@ -111,7 +120,10 @@ module.exports.create = async (req, res, next) => {
   product
     .save()
     .then(async (product) => {
-      await notificationController.sendNotification(product.seller, product._id.toString());
+      await notificationController.sendNotification(
+        product.seller,
+        product._id.toString()
+      );
       res
         .status(201)
         .json({ error: false, message: "Producto creado con éxito" });
