@@ -110,7 +110,7 @@ module.exports.create = async (req, res, next) => {
   product
     .save()
     .then(async (product) => {
-      await notificationController.sendNotification(product.seller, product._id);
+      await notificationController.sendNotification(product.seller, product._id.toString());
       res
         .status(201)
         .json({ error: false, message: "Producto creado con éxito" });
