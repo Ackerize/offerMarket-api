@@ -59,3 +59,26 @@ module.exports.createNotification = (req, res, next) => {
       })
     );
 };
+
+module.exports.isNotification = (req, res, next) => {
+  const { uid, seller } = req.params;
+  Notification.findOne({ user: uid, seller })
+    .then((notification) => {
+      if (notification) {
+        return res
+          .status(200)
+          .json({ error: false, message: "Existe", isNotification: true });
+      }
+      return res
+        .status(200)
+        .json({ error: false, message: "No existe", isNotification: false });
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: true,
+        message: "Ocurrió un error inesperado",
+        errorMessage: err.message,
+      })
+    );
+};
+
