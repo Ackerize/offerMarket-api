@@ -122,4 +122,67 @@ router.post('/', notificationController.createNotification);
  */
 router.delete('/:uid/:seller', notificationController.deleteNotification);
 
+/**
+ * @swagger
+ * /notifications/{uid}/{seller}:
+ *  get:
+ *      summary: Verificar si un usuario está suscrito a notificaciones
+ *      description: Verifica si un usuario está suscrito a notificaciones
+ *      tags: 
+ *          - Notificaciones
+ *      parameters:
+ *          - in: path
+ *            name: uid
+ *            schema:
+ *              type: string
+ *            description: uid del usuario
+ *            required: true
+ *          - in: path
+ *            name: seller
+ *            schema:
+ *              type: string
+ *            description: uid del vendedor
+ *            required: true
+ *      responses:
+ *          '200':
+ *              description: Suscripción obtenida correctamente
+ *              content:
+ *                  application/json:
+ *                     schema:
+ *                        type: object
+ *                        properties:
+ *                           error:
+ *                              type: boolean
+ *                              description: Indica que no hubo error
+ *                              example: false
+ *                           message:
+ *                              type: string
+ *                              description: Mensaje indicando éxito
+ *                              example: Existe
+ *                           isNotification:
+ *                              type: boolean
+ *                              description: Indica si el usuario está suscrito a notificaciones
+ *                              example: true
+ *          '500':
+ *              description: Error en el servidor
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              error:
+ *                                  type: boolean
+ *                                  description: Indica que ocurrió un error
+ *                                  example: true
+ *                              message:
+ *                                  type: string
+ *                                  description: Mensaje indicando error
+ *                                  example: Ocurrió un error inesperado
+ *                              errorMessage:
+ *                                  type: string
+ *                                  description: Mensaje descriptivo sobre el error
+ *                                  example: Error en el servidor
+ */
+router.get('/:uid/:seller', notificationController.isNotification);
+
 module.exports = router;
