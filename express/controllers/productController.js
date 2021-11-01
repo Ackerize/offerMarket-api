@@ -123,3 +123,51 @@ module.exports.create = async (req, res, next) => {
       })
     );
 };
+
+module.exports.delete = (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+  Product.findByIdAndDelete(id)
+    .then((product) => {
+      if (product) {
+        res.status(200).json({ error: false, message: "Producto eliminado" });
+      } else {
+        res
+          .status(404)
+          .json({ error: true, message: "Producto no encontrado" });
+      }
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: true,
+        message: "Ocurrió un error inesperado",
+        errorMessage: err.message,
+      })
+    );
+};
+
+module.exports.update = (req, res, next) => {
+  const {
+    params: { id },
+  } = req;
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((product) => {
+      if (product) {
+        res
+          .status(200)
+          .json({ error: false, message: "Producto actualizado con éxito" });
+      } else {
+        res
+          .status(404)
+          .json({ error: true, message: "Producto no encontrado" });
+      }
+    })
+    .catch((err) =>
+      res.status(500).json({
+        error: true,
+        message: "Ocurrió un error inesperado",
+        errorMessage: err.message,
+      })
+    );
+};
