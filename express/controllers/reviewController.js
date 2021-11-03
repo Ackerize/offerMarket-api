@@ -2,10 +2,8 @@ const Review = require("../models/review");
 const Profile = require("../models/profile");
 
 module.exports.create = (req, res, next) => {
-  const { sellerUid } = req.params;
   const review = new Review({
     ...req.body,
-    seller: sellerUid,
   });
   review
     .save()
