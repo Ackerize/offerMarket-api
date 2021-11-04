@@ -36,15 +36,16 @@ module.exports.getBySeller = (req, res, next) => {
     .then(async (reviews) => {
       const reviewsWithProfile = await Promise.all(
         reviews.map(async (review) => {
-          const { name: author } = await Profile.findOne({
+          const { name: author, photo } = await Profile.findOne({
             user: review.author,
           });
           const { name: seller } = await Profile.findOne({
             user: review.seller,
           });
-          return { ...review._doc, author, seller };
+          return { ...review._doc, author, seller, photo };
         })
       );
+
       res.status(200).json({
         error: false,
         message: "Reseñas obtenidas con éxito",
