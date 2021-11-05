@@ -115,8 +115,7 @@ module.exports.getByUser = (req, res, next) => {
 };
 
 module.exports.create = async (req, res, next) => {
-  const user = await Profile.findOne({ user: req.body.seller });
-  const product = new Product({ ...req.body, location: { ...user.location } });
+  const product = new Product({ ...req.body });
   product
     .save()
     .then(async (product) => {
