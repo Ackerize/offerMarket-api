@@ -9,11 +9,13 @@ module.exports.create = (req, res, next) => {
     .save()
     .then(async (result) => {
       const profile = await Profile.findOne({ user: result.seller });
+      const newTotal = profile.totalReviews + 1;
+      const newAverage = profile.rating + ((result.rating - profile.rating) / newTotal);
       await Profile.updateOne(
         { user: result.seller },
         {
-          rating: (profile.rating + result.rating) / (profile.totalReviews + 1),
-          totalReviews: profile.totalReviews + 1,
+          rating: newAverage,
+          totalReviews: newTotal,
         }
       );
       res.status(201).json({

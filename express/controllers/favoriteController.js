@@ -21,6 +21,7 @@ module.exports.create = (req, res, next) => {
 
 module.exports.getByUser = (req, res, next) => {
   Favorite.find({ user: req.params.userId })
+    .sort({ "createdAt": "desc" })
     .populate("product")
     .then((favorites) => {
       res.status(200).json({
@@ -39,7 +40,10 @@ module.exports.getByUser = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  Favorite.findOneAndDelete({ product: req.params.productId, user: req.params.userId })
+  Favorite.findOneAndDelete({
+    product: req.params.productId,
+    user: req.params.userId,
+  })
     .then((favorite) => {
       res.status(200).json({
         message: "Producto eliminado de favoritos",
